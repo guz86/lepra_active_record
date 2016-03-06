@@ -9,13 +9,15 @@ set :database, "sqlite3:lepra.db"
 class Post < ActiveRecord::Base
 	validates :name, presence: true
 	validates :content, presence: true
+
 	#one-to-many
-	#has_many :comments, :foreign_key => "postID"
+	has_many :comments
 end
 
 class Comment < ActiveRecord::Base
+
 	#one-to-many
-	#belongs_to :post, :foreign_key => "postID"
+	belongs_to :post
 end
 
 #вывод всех постов на главной
@@ -42,13 +44,19 @@ end
 # вывод информации о посте
 get '/details/:id' do
 	@post = Post.find(params[:id])
-	#@comment = Post.find(:id).comments
+	
+
+	#@comment = Post.find params[:id]
+	@comment = @post.comments
+
+
 	erb :details
 end
 
 post '/details/:id' do
-	c = Comment.new params[:comment]	
+	c = Comment.new params[:comment]
+	# не знаю как передать параметр поста в базу комментариев
+	#comment[post_id] = params[:id]
 	c.save
-	redirect to('/details/' + params[:id])
-	
+	redirect to('/details/' + params[:id])	
 end

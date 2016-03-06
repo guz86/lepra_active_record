@@ -6,7 +6,15 @@
 	<br />
 	<br />
 	<%= @post.name %> - Added: <%= @post.created_at %>
-	<br />
+	<br />	<br />
+<h5>Post comments!</h5>
+
+
+<% @comment.each do |c| %>
+ 	<p> - <%= c.content %>	</p>
+<% end %>
+
+
 
 	<hr />
 
@@ -14,6 +22,8 @@
 	<form action="/details/<%= @post.id %>" method="POST">	
     <label>Введите комментарий:</label>
 	 	<textarea name="comment[content]" style="width: 400px" class="form-control" rows="6" placeholder="Type comment text here"></textarea>
+	 	
+	 	<input style='display:none' name="comment[post_id]" type="text" class="form-control" value="<%= @post.id %>">
 	 	<br />
 	 	<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
