@@ -11,6 +11,9 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true
 end
 
+class Comment < ActiveRecord::Base
+end
+
 #вывод всех постов на главной
 get '/' do
 	@posts = Post.all
