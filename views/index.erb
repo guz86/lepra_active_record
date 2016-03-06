@@ -6,7 +6,6 @@
 	</p>
 	<br />
 	<br />
-	<%= post.name %> - Added: <%= post.created_at %>
-	<br />
+	<%= post.name %> - Added: <%= post.created_at %> - <a href="/details/<%= post['id'] %>">Comments</a>
 	<hr />
 <% end %>

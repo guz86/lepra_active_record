@@ -11,6 +11,7 @@ class Post < ActiveRecord::Base
 	validates :content, presence: true
 end
 
+#вывод всех постов на главной
 get '/' do
 	@posts = Post.all
 	erb :index		
@@ -20,6 +21,7 @@ get '/new' do
 	erb :new
 end
 
+# добавление поста
 post '/new' do
 	p = Post.new params[:post]	
 	if p.save
@@ -28,4 +30,10 @@ post '/new' do
 		@error = p.errors.full_messages.first
 		erb :new
 	end
+end
+
+# вывод информации о посте
+get '/details/:id' do
+	@post = Post.find(params[:id])
+	erb :details
 end
