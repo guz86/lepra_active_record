@@ -7,6 +7,8 @@ require 'sinatra/activerecord'
 set :database, "sqlite3:lepra.db"
 
 class Post < ActiveRecord::Base
+	validates :name, presence: true
+	validates :content, presence: true
 end
 
 get '/' do
@@ -19,7 +21,11 @@ get '/new' do
 end
 
 post '/new' do
-	p = Post.new params[:post]
-	p.save
-	erb :new
+	p = Post.new params[:post]	
+	if p.save
+		erb "<h2>Thank you!</h2>"
+	else
+		@error = p.errors.full_messages.first
+		erb :new
+	end
 end
