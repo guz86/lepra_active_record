@@ -13,3 +13,7 @@ get '/' do
 	@posts = Post.all
 	erb :index		
 end
+
+get '/new' do
+	erb :new
+end
