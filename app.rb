@@ -6,9 +6,10 @@ require 'sinatra/activerecord'
 
 set :database, "sqlite3:lepra.db"
 
-class Posts < ActiveRecord::Base
+class Post < ActiveRecord::Base
 end
 
 get '/' do
+	@posts = Post.all
 	erb :index		
 end

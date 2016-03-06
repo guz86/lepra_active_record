@@ -1,1 +1,6 @@
 <h2>Latest posts:</h2>
+<% @posts.each do |post| %>
+	<p>
+		<%= post.name %>
+	</p>
+<% end %>
