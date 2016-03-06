@@ -7,4 +7,14 @@
 	<br />
 	<%= @post.name %> - Added: <%= @post.created_at %>
 	<br />
+
 	<hr />
+
+<p>
+	<form action="/details/<%= @post.id %>" method="POST">	
+    <label>Введите комментарий:</label>
+	 	<textarea name="comment[content]" style="width: 400px" class="form-control" rows="6" placeholder="Type comment text here"></textarea>
+	 	<br />
+	 	<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+</p>
