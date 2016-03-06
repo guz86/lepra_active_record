@@ -1,6 +1,12 @@
 <h2>Latest posts:</h2>
+<br />
 <% @posts.each do |post| %>
 	<p>
-		<%= post.name %>
+		<%= post.content %>
 	</p>
+	<br />
+	<br />
+	<%= post.name %> - Added: <%= post.created_at %>
+	<br />
+	<hr />
 <% end %>
