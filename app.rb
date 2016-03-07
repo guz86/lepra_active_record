@@ -54,9 +54,8 @@ get '/details/:id' do
 end
 
 post '/details/:id' do
-	c = Comment.new params[:comment]
-	# не знаю как передать параметр поста в базу комментариев
-	#comment[post_id] = params[:id]
+	# передаем отдельно каждый параметр id и content - сюда из хэша params[:comment] достаем занчение
+	c = Comment.new 'post_id' => params[:id], 'content' => params[:comment]['content']
 	c.save
 	redirect to('/details/' + params[:id])	
 end
